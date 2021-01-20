@@ -18,8 +18,6 @@ async function bootstrap() {
     }),
   );
 
-  app.useGlobalGuards(new ApiKeyGuard());
-
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(3000);
