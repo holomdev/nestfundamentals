@@ -18,6 +18,7 @@ import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
 import { Public } from '../common/decorators/public.decorators';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { Protocol } from '../common/decorators/protocol.decorator';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -32,8 +33,10 @@ export class CoffeesController {
   @Public()
   @Get()
   async findAll(
+    @Protocol('https') protocol: string,
     @Query() paginationQuery: PaginationQueryDto,
   ): Promise<Coffee[]> {
+    console.log(protocol);
     return this.coffeesService.findAll(paginationQuery);
   }
 
